@@ -1,0 +1,13 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --font-poppins: "Poppins", sans-serif;
+  --text-color: #444;
+}
+
+body {
+  font-family: var(--font-poppins);
+  color: var(--text-color);
+}

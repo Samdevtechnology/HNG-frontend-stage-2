@@ -1,0 +1,58 @@
+[
+  {
+    "id": 111,
+    "image": "/assets/images/boots.png",
+    "category": "Men’s Shoes",
+    "title": "Black Cowboy Boots",
+    "price": "80,000"
+  },
+  {
+    "id": 222,
+    "image": "/assets/images/shoe.png",
+    "category": "Men’s Shoes",
+    "title": "Black Rubber Shoes",
+    "price": "45,000"
+  },
+  {
+    "id": 333,
+    "image": "/assets/images/sport2.png",
+    "category": "Men’s Shoes",
+    "title": "StrideMax Sneakers",
+    "price": "28,000"
+  },
+  {
+    "id": 444,
+    "image": "/assets/images/sport.png",
+    "category": "Men’s Shoes",
+    "title": "StrideFlex Sneakers",
+    "price": "28,000"
+  },
+  {
+    "id": 555,
+    "image": "/assets/images/sport.png",
+    "category": "Men’s Shoes",
+    "title": "Brown Cowboy Boots",
+    "price": "75,000"
+  },
+  {
+    "id": 666,
+    "image": "/assets/images/crocs.png",
+    "category": "Casual",
+    "title": "Blue Fluffy Crocs",
+    "price": "10,000"
+  },
+  {
+    "id": 777,
+    "image": "/assets/images/crocs3.png",
+    "category": "Casual",
+    "title": "Orange Fluffy Crocs",
+    "price": "10,000"
+  },
+  {
+    "id": 888,
+    "image": "/assets/images/crocs2.png",
+    "category": "Casual",
+    "title": "Red Fluffy Crocs",
+    "price": "10,000"
+  }
+]
