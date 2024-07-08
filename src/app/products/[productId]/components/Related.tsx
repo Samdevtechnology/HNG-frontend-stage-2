@@ -46,7 +46,7 @@ const Related = () => {
     <section className="pb-12 mt-16">
       {products && (
         <div>
-          <header className="font-medium text-3xl pb-8">
+          <header className="font-medium text-3xl pb-8 text-primary">
             Related Products
           </header>
           <ProductGrid products={products} cols={4} />

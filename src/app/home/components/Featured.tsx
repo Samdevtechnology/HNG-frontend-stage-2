@@ -46,7 +46,7 @@ const Featured = () => {
     <section className="pb-12">
       {products && (
         <div>
-          <header className="font-medium text-3xl pb-8">
+          <header className="font-medium text-3xl pb-8 text-primary">
             Featured Products
           </header>
           <nav className="pb-4">

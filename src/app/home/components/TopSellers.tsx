@@ -29,7 +29,9 @@ const TopSeller = () => {
     <section className="pb-12">
       {products && (
         <div>
-          <header className="font-medium text-3xl pb-8">Top Sellers</header>
+          <header className="font-medium text-3xl pb-8 text-primary">
+            Top Sellers
+          </header>
           <ProductGrid products={products} gap={6} />
         </div>
       )}

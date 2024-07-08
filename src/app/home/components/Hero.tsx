@@ -6,7 +6,8 @@ const Hero = () => {
       <div className="flex px-20">
         <div className="flex justify-center items-start flex-col">
           <header className=" font-bold text-6xl leading-tight pb-6">
-            Step Into Comfort and Style
+            Step Into <span className=" text-primary">Comfort</span> and{" "}
+            <span className=" text-primary">Style</span>
           </header>
           <p className="w-4/5">
             Discover our exclusive collection of trendy and comfortable shoes,

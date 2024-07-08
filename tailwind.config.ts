@@ -19,13 +19,15 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
-        primary: "#FFE7FA",
+        primary: "#A11BF3",
+        text_primary: "#444444",
         secondary: "#D9D9D9",
         gray_text: "#A4A4A4",
         dark_border: "#322C2C",
         danger: "#D72D2D",
         light_border: "#D9D9D9",
         thin_border: "#ECECEC",
+        gray_bg: "#F9F9F9",
       },
     },
   },

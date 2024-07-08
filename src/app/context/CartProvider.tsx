@@ -1,12 +1,6 @@
 "use client";
 
-import React, {
-  createContext,
-  useContext,
-  useState,
-  ReactNode,
-  useEffect,
-} from "react";
+import React, { createContext, useContext, useState, ReactNode } from "react";
 import Product from "../../utils/types/Product";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
@@ -20,6 +14,7 @@ interface CartProps {
   totalItems: number;
   totalPrice: number;
   addToCart: (item: Product) => void;
+  reduceCartItem: (id: number) => void;
   removeFromCart: (id: number) => void;
   clearCart: () => void;
 }
@@ -39,27 +34,87 @@ export const CartProvider = ({ children }: { children: ReactNode }) => {
 
       if (existingItemIndex !== -1) {
         const updatedCart = [...prevCart];
-        updatedCart[existingItemIndex].quantity += 1;
+        updatedCart[existingItemIndex] = {
+          ...updatedCart[existingItemIndex],
+          quantity: updatedCart[existingItemIndex].quantity + 1,
+        };
         return updatedCart;
       } else {
         return [...prevCart, { ...item, quantity: 1 }];
       }
     });
+
     setTotalItems((prevTotal) => prevTotal + 1);
-    setTotalPrice((prevTotal) => prevTotal + parseFloat(item.price));
+    setTotalPrice(
+      (prevTotal) => prevTotal + parseFloat(item.price.replace(/,/g, ""))
+    );
+  };
+
+  const reduceCartItem = (id: number) => {
+    setCart((prevCart) => {
+      const existingItemIndex = prevCart.findIndex(
+        (cartItem) => cartItem.id === id
+      );
+
+      if (existingItemIndex !== -1) {
+        const updatedCart = [...prevCart];
+        const existingItem = updatedCart[existingItemIndex];
+        if (existingItem.quantity > 1) {
+          updatedCart[existingItemIndex] = {
+            ...existingItem,
+            quantity: existingItem.quantity - 1,
+          };
+          return updatedCart;
+        } else {
+          return prevCart.filter((item) => item.id !== id);
+        }
+      }
+      return prevCart;
+    });
+
+    setTotalItems((prevTotal) => prevTotal - 1);
+    setTotalPrice((prevTotal) => {
+      const item = cart.find((item) => item.id === id);
+      return item
+        ? prevTotal - parseFloat(item.price.replace(/,/g, ""))
+        : prevTotal;
+    });
   };
 
   const removeFromCart = (id: number) => {
-    const itemToRemove = cart.find((item) => item.id === id);
+    setCart((prevCart) => {
+      const itemToRemove = prevCart.find((item) => item.id === id);
 
-    if (itemToRemove) {
-      setCart((prevCart) => prevCart.filter((item) => item.id !== id));
-      setTotalItems((prevTotal) => prevTotal - itemToRemove.quantity);
-      setTotalPrice(
-        (prevTotal) =>
-          prevTotal - parseFloat(itemToRemove.price) * itemToRemove.quantity
-      );
-    }
+      if (itemToRemove) {
+        return prevCart.filter((item) => item.id !== id);
+      }
+
+      return prevCart;
+    });
+
+    setTotalItems((prevTotal) => {
+      const itemToRemove = cart.find((item) => item.id === id);
+
+      if (itemToRemove) {
+        return prevTotal - itemToRemove.quantity;
+      }
+
+      return prevTotal;
+    });
+
+    setTotalPrice((prevTotal) => {
+      const itemToRemove = cart.find((item) => item.id === id);
+
+      if (itemToRemove) {
+        return (
+          prevTotal -
+          parseFloat(itemToRemove.price.replace(/,/g, "")) *
+            itemToRemove.quantity
+        );
+      }
+
+      return prevTotal;
+    });
   };
 
   const clearCart = () => {
@@ -75,6 +130,7 @@ export const CartProvider = ({ children }: { children: ReactNode }) => {
         totalItems,
         totalPrice,
         addToCart,
+        reduceCartItem,
         removeFromCart,
         clearCart,
       }}
