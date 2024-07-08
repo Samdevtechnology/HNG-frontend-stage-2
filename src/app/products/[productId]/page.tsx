@@ -7,11 +7,13 @@ import { useEffect, useState } from "react";
 import RelatedProductSection from "./components/Related";
 import Link from "next/link";
 import LoadingSpinner from "@/app/components/LoadingSpinner";
+import { useCart } from "@/app/context/CartProvider";
 
 interface ProductIdPros {
   params: { productId: string };
 }
 const Page = ({ params }: ProductIdPros) => {
+  const { cart, addToCart, reduceCartItem, totalPrice } = useCart();
   const productId = params.productId;
   const [product, setProduct] = useState<Product | null>(null);
   const [error, setError] = useState<string | null>(null);
@@ -57,6 +59,13 @@ const Page = ({ params }: ProductIdPros) => {
       </Container>
     );
   }
+
+  const getProductQuantity = (id: number) => {
+    const cartItem = cart.find((item) => item.id === id);
+    return cartItem ? cartItem.quantity : 0;
+  };
+
+  const productQuantity = getProductQuantity(product.id);
 
   return (
     <Container className="m-12">
@@ -108,31 +117,51 @@ const Page = ({ params }: ProductIdPros) => {
             <div className="border-b border-light_border font-medium mb-6 pb-2">
               <p className="mb-4">
                 Select Size:
-                <span className="font-normal pl-8">Stride & Co</span>
-              </p>
-            </div>
-            <div className="font-medium mb-6 pb-2">
-              <p className="mb-4">
-                Item:
-                <span className="font-normal pl-8">1</span>
-              </p>
-              <p className="mb-4 flex justify-start items-center">
-                Total:
-                <span className="font-normal pl-8 text-2xl">
-                  {product.price}
+                <span className="font-normal pl-8">
+                  <select name="size" id="size">
+                    <option value="xs">xs</option>
+                    <option value="sm">sm</option>
+                    <option value="lg">lg</option>
+                  </select>
                 </span>
               </p>
             </div>
-          </div>
-          <div className="flex justify-around">
-            <button className="bg-dark_border text-white rounded-[50px] py-3 px-6">
-              Add to Cart
-            </button>
-            <Link href="/cart">
-              <button className="border rounded-[50px] p-3 border-black ">
-                Proceed to Checkout
-              </button>
-            </Link>
+            <div className="font-medium mb-6 pb-2">
+              <div className="flex justify-start gap-8 items-center">
+                <div className="relative w-24 flex justify-center items-center">
+                  <button
+                    onClick={() => reduceCartItem(product.id)}
+                    className=" absolute left-3"
+                  >
+                    <p className=" text-3xl w-6 h-6 flex pb-1 justify-center items-center">
+                      -
+                    </p>
+                  </button>
+                  <input
+                    type="text"
+                    value={productQuantity}
+                    className="w-24 px-10 py-1 text-center outline-none rounded-2xl border border-light_border"
+                  />
+                  <button
+                    onClick={() => addToCart(product)}
+                    className=" absolute right-3"
+                  >
+                    <p className=" text-2xl w-6 h-6 flex justify-center items-center">
+                      +
+                    </p>
+                  </button>
+                </div>
+
+                <div className="flex justify-around">
+                  <button
+                    onClick={() => addToCart(product)}
+                    className=" bg-primary text-white rounded-[50px] py-2 px-4"
+                  >
+                    Add to Cart
+                  </button>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </section>
