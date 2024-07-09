@@ -43,13 +43,13 @@ const Featured = () => {
   }
 
   return (
-    <section className="pb-12">
+    <Container Variant={"section"} className="pb-12">
       {products && (
         <div>
           <header className="font-medium text-3xl pb-8 text-primary">
             Featured Products
           </header>
-          <nav className="pb-4">
+          <nav className="hidden md:flex pb-4">
             <ul className="flex gap-10">
               <li className="">All Shoes</li>
               <li>Men’s Shoes</li>
@@ -59,7 +59,7 @@ const Featured = () => {
           <ProductGrid products={products} cols={4} rows={2} />
         </div>
       )}
-    </section>
+    </Container>
   );
 };
 

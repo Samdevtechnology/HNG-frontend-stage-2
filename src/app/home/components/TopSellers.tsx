@@ -3,6 +3,7 @@
 import { useEffect, useState } from "react";
 import type Product from "@/utils/types/Product";
 import ProductGrid from "../../components/ProductGrid";
+import Container from "@/app/components/Container";
 
 const TopSeller = () => {
   const [message, setMessage] = useState<string>("Loading...");
@@ -26,7 +27,7 @@ const TopSeller = () => {
     fetchData();
   }, []);
   return (
-    <section className="pb-12">
+    <Container Variant={"section"} className="pb-12">
       {products && (
         <div>
           <header className="font-medium text-3xl pb-8 text-primary">
@@ -35,7 +36,7 @@ const TopSeller = () => {
           <ProductGrid products={products} gap={6} />
         </div>
       )}
-    </section>
+    </Container>
   );
 };
 

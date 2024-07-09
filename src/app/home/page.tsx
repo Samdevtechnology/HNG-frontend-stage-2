@@ -5,11 +5,11 @@ import TopSellerSection from "./components/TopSellers";
 
 const Home = () => {
   return (
-    <Container>
+    <div>
       <HeroSection />
       <TopSellerSection />
       <FeaturedSection />
-    </Container>
+    </div>
   );
 };
 

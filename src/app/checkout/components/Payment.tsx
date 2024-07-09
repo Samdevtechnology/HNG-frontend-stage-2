@@ -1,10 +1,9 @@
 "use client";
 import React, { ChangeEvent, useState } from "react";
 import Input from "./form/Input";
-import Container from "@/app/components/Container";
 
 const Payment = () => {
-  const [selectedPayment, setSelectedPayment] = useState<string>("");
+  const [selectedPayment, setSelectedPayment] = useState<string>("card");
 
   const handlePaymentChange = (event: ChangeEvent<HTMLInputElement>) => {
     setSelectedPayment(event.target.id);
@@ -19,16 +18,20 @@ const Payment = () => {
       <form action="">
         <div>
           <div className="bg-gray_bg p-4 mt-6">
-            <div className=" cursor-pointer">
+            <div>
               <fieldset className="flex justify-start items-center">
                 <input
                   type="radio"
+                  className=" cursor-pointer"
                   name="payment"
                   id="card"
                   checked={selectedPayment === "card"}
                   onChange={handlePaymentChange}
                 />
-                <label htmlFor="card" className="font-medium pl-2">
+                <label
+                  htmlFor="card"
+                  className="font-medium pl-2 cursor-pointer"
+                >
                   Credit Card
                 </label>
               </fieldset>
@@ -64,7 +67,7 @@ const Payment = () => {
                   <Input placeholder="Choose Country/Region" />
                 </fieldset>
 
-                <div className=" cursor-pointer">
+                <div>
                   <fieldset className="flex justify-start items-center">
                     <input type="checkbox" name="save" id="save" />
                     <label className="font-medium pl-2" htmlFor="save">
@@ -76,38 +79,46 @@ const Payment = () => {
             )}
           </div>
           <div className="bg-gray_bg p-4 mt-6">
-            <div className=" cursor-pointer">
+            <div>
               <fieldset className="flex justify-start items-center">
                 <input
                   type="radio"
+                  className=" cursor-pointer"
                   name="payment"
                   id="cash"
                   checked={selectedPayment === "cash"}
                   onChange={handlePaymentChange}
                 />
-                <label htmlFor="cash" className="font-medium pl-2">
+                <label
+                  htmlFor="cash"
+                  className="font-medium pl-2 cursor-pointer"
+                >
                   Cash on Delivery
                 </label>
               </fieldset>
             </div>
             {selectedPayment === "cash" && (
-              <div className=" mt-8">
+              <div className=" mt-10">
                 <h1>Payment Option Not Currently available</h1>
               </div>
             )}
           </div>
         </div>
         <div className="bg-gray_bg p-4 mt-6">
-          <div className=" cursor-pointer">
+          <div>
             <fieldset className="flex justify-start items-center">
               <input
                 type="radio"
+                className=" cursor-pointer"
                 name="payment"
                 id="transfer"
                 checked={selectedPayment === "transfer"}
                 onChange={handlePaymentChange}
               />
-              <label htmlFor="transfer" className="font-medium pl-2">
+              <label
+                htmlFor="transfer"
+                className="font-medium pl-2 cursor-pointer"
+              >
                 Bank Transfer
               </label>
             </fieldset>

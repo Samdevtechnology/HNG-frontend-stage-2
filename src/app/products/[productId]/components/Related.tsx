@@ -7,8 +7,22 @@ import Container from "@/app/components/Container";
 import LoadingSpinner from "@/app/components/LoadingSpinner";
 
 const Related = () => {
+  const [mobile, setMobile] = useState(false);
   const [products, setProducts] = useState<Product[]>([]);
   const [error, setError] = useState<string | null>(null);
+
+  useEffect(() => {
+    const handleResize = () => {
+      setMobile(window.innerWidth < 768);
+    };
+
+    handleResize();
+    window.addEventListener("resize", handleResize);
+
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    };
+  }, []);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -49,7 +63,11 @@ const Related = () => {
           <header className="font-medium text-3xl pb-8 text-primary">
             Related Products
           </header>
-          <ProductGrid products={products} cols={4} />
+          {mobile ? (
+            <ProductGrid products={products} cols={2} rows={2} />
+          ) : (
+            <ProductGrid products={products} cols={4} />
+          )}
         </div>
       )}
     </section>

@@ -69,9 +69,9 @@ const Page = ({ params }: ProductIdPros) => {
 
   return (
     <Container className="m-12">
-      <section className="flex gap-8">
-        <div className="w-3/12">
-          <div className="bg-secondary rounded mb-2">
+      <section className="flex flex-col md:flex-row gap-8">
+        <div className="w-full md:w-3/12">
+          <div className="bg-secondary flex justify-center rounded mb-2">
             <Image
               src={product.image}
               alt={product.title}
@@ -80,7 +80,7 @@ const Page = ({ params }: ProductIdPros) => {
             />
           </div>
           <div className="flex gap-2">
-            <div className="bg-secondary rounded">
+            <div className="bg-secondary flex justify-center w-full rounded">
               <Image
                 src={product.image}
                 alt={product.title}
@@ -88,7 +88,7 @@ const Page = ({ params }: ProductIdPros) => {
                 height={200}
               />
             </div>
-            <div className="bg-secondary rounded">
+            <div className="bg-secondary flex justify-center w-full rounded">
               <Image
                 src={product.image}
                 alt={product.title}
@@ -98,7 +98,7 @@ const Page = ({ params }: ProductIdPros) => {
             </div>
           </div>
         </div>
-        <div className="w-9/12">
+        <div className="w-full md:w-9/12">
           <div>
             <div className=" border-b border-light_border mb-6 pb-2">
               <header className="font-semibold text-3xl pb-4">

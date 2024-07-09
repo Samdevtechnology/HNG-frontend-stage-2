@@ -11,11 +11,14 @@ interface ProductProps {
 
 const ProductCard = ({ product }: ProductProps) => {
   return (
-    <div className="card w-full min-w-48">
+    <div className="card w-full ">
       <div className="card-head flex justify-center items-center w-full min-h-56 rounded bg-secondary relative">
-        <Link className="w-full h-full" href={`/products/${product.id}`}>
+        <Link
+          className="w-full h-full flex justify-center"
+          href={`/products/${product.id}`}
+        >
           <Image
-            className="w-full h-full"
+            className="md:w-full md:h-full"
             alt="Boot"
             src={product.image}
             width={350}
@@ -33,7 +36,10 @@ const ProductCard = ({ product }: ProductProps) => {
         <div className="cart-category text-sm text-gray_text">
           {product.category}
         </div>
-        <Link href={`/products/${product.id}`} className="cart-title py-1">
+        <Link
+          href={`/products/${product.id}`}
+          className="cart-title py-1 text-center"
+        >
           {product.title}
         </Link>
         <div className="cart-price text-2xl">₦{product.price}</div>
