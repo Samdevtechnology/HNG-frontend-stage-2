@@ -5,7 +5,7 @@ import Container from "./Container";
 import Search from "../assets/icons/Search";
 import Cart from "./Cart";
 import Link from "next/link";
-import Hamburger from "../assets/icons/hamburger";
+import Hamburger from "../assets/icons/Hamburger";
 import { useState } from "react";
 
 const Header = () => {
