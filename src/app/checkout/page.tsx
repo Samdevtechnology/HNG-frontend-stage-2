@@ -5,7 +5,7 @@ import SummarySection from "./components/Summary";
 
 const Page = () => {
   return (
-    <Container className="flex flex-col-reverse  gap-8">
+    <Container className="flex flex-col-reverse md:flex-row  gap-8">
       <div className="w-full md:w-2/3">
         <BillingSection />
         <PaymentSection />
