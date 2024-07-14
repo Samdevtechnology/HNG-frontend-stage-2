@@ -4,6 +4,7 @@ import type Product from "@/utils/types/Product";
 import Like from "../assets/icons/Like";
 import AddToCart from "./AddToCart";
 import Link from "next/link";
+import { formatPrice, numberToPrice } from "@/utils/priceConverter";
 
 interface ProductProps {
   product: Product;
@@ -42,7 +43,7 @@ const ProductCard = ({ product }: ProductProps) => {
         >
           {product.title}
         </Link>
-        <div className="cart-price text-2xl">₦{product.price}</div>
+        <div className="cart-price text-2xl">₦{formatPrice(product.price)}</div>
       </div>
     </div>
   );

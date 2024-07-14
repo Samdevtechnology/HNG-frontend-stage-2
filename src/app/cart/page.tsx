@@ -68,8 +68,10 @@ const Page = () => {
                   </div>
                 </div>
               </div>
-              <div className="hidden md:flex unit-price col-span-2 text-center">
-                <p className="font-semibold text-lg"> ₦{item.price}</p>
+              <div className="hidden md:flex unit-price col-span-2 md:justify-center text-center">
+                <p className="font-semibold text-lg">
+                  ₦{numberToPrice(priceToNumber(item.price))}
+                </p>
               </div>
               <div className="hidden md:flex quantity col-span-2 text-center justify-center">
                 <div className="relative w-24 flex justify-center items-center">
@@ -96,7 +98,7 @@ const Page = () => {
                   </button>
                 </div>
               </div>
-              <div className="hidden md:flex unit-price col-span-2 text-center">
+              <div className="hidden md:flex unit-price col-span-2 md:justify-center text-center">
                 <p className="font-semibold text-lg">
                   ₦{numberToPrice(priceToNumber(item.price) * item.quantity)}
                 </p>
@@ -104,7 +106,9 @@ const Page = () => {
               <div className="md:hidden mt-2">
                 <div className="flex items-center">
                   <div className="unit-price col-span-2 text-center">
-                    <p className="font-semibold">Price: ₦{item.price}</p>
+                    <p className="font-semibold">
+                      Price: ₦{numberToPrice(priceToNumber(item.price))}
+                    </p>
                   </div>
                   <div className="quantity col-span-2 text-center flex justify-center">
                     <div className="relative ml-12 w-24 flex justify-center items-center">

@@ -5,15 +5,15 @@ import Product from "@/utils/types/Product";
 import Image from "next/image";
 import { useEffect, useState } from "react";
 import RelatedProductSection from "./components/Related";
-import Link from "next/link";
 import LoadingSpinner from "@/app/components/LoadingSpinner";
 import { useCart } from "@/app/context/CartProvider";
+import { formatPrice } from "@/utils/priceConverter";
 
 interface ProductIdPros {
   params: { productId: string };
 }
 const Page = ({ params }: ProductIdPros) => {
-  const { cart, addToCart, reduceCartItem, totalPrice } = useCart();
+  const { cart, addToCart, reduceCartItem } = useCart();
   const productId = params.productId;
   const [product, setProduct] = useState<Product | null>(null);
   const [error, setError] = useState<string | null>(null);
@@ -60,7 +60,7 @@ const Page = ({ params }: ProductIdPros) => {
     );
   }
 
-  const getProductQuantity = (id: number) => {
+  const getProductQuantity = (id: string) => {
     const cartItem = cart.find((item) => item.id === id);
     return cartItem ? cartItem.quantity : 0;
   };
@@ -104,7 +104,7 @@ const Page = ({ params }: ProductIdPros) => {
               <header className="font-semibold text-3xl pb-4">
                 {product.title}
               </header>
-              <p className="text-2xl">{product.price}</p>
+              <p className="text-2xl">₦{formatPrice(product.price)}</p>
             </div>
             <div className="border-b border-light_border font-medium mb-6 pb-2">
               <p className="mb-4">
