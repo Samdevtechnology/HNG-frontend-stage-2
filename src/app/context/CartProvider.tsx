@@ -14,8 +14,8 @@ interface CartProps {
   totalItems: number;
   totalPrice: number;
   addToCart: (item: Product) => void;
-  reduceCartItem: (id: number) => void;
-  removeFromCart: (id: number) => void;
+  reduceCartItem: (id: string) => void;
+  removeFromCart: (id: string) => void;
   clearCart: () => void;
 }
 
@@ -50,7 +50,7 @@ export const CartProvider = ({ children }: { children: ReactNode }) => {
     );
   };
 
-  const reduceCartItem = (id: number) => {
+  const reduceCartItem = (id: string) => {
     setCart((prevCart) => {
       const existingItemIndex = prevCart.findIndex(
         (cartItem) => cartItem.id === id
@@ -81,7 +81,7 @@ export const CartProvider = ({ children }: { children: ReactNode }) => {
     });
   };
 
-  const removeFromCart = (id: number) => {
+  const removeFromCart = (id: string) => {
     setCart((prevCart) => {
       const itemToRemove = prevCart.find((item) => item.id === id);
 
