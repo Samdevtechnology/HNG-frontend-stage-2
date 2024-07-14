@@ -5,9 +5,18 @@ import Container from "../components/Container";
 import Image from "next/image";
 import { numberToPrice, priceToNumber } from "@/utils/priceConverter";
 import Link from "next/link";
+import Delete from "../assets/icons/Delete";
+import BackArrow from "../assets/icons/BackArrow";
 
 const Page = () => {
-  const { cart, addToCart, reduceCartItem, totalPrice } = useCart();
+  const {
+    cart,
+    addToCart,
+    reduceCartItem,
+    totalPrice,
+    removeFromCart,
+    clearCart,
+  } = useCart();
 
   if (!cart.length) {
     return (
@@ -26,6 +35,14 @@ const Page = () => {
 
   return (
     <Container className="my-12">
+      <div className="mb-1 md:mb-10 w-fit">
+        <Link href={"/"}>
+          <button className="flex items-center">
+            <BackArrow />
+            <span className="ml-2">Continue Shopping</span>
+          </button>
+        </Link>
+      </div>
       <div className=" cart-headings hidden md:grid grid-cols-12 gap-4 border-b border-light_border pb-4">
         <li className="col-span-6">
           <h3 className="font-semibold text-2xl">Product Name</h3>
@@ -66,6 +83,12 @@ const Page = () => {
                     </p>
                     <p className="pb-2">Product Type: {item.category}</p>
                   </div>
+                  <button
+                    className="flex items-center"
+                    onClick={() => removeFromCart(item.id)}
+                  >
+                    <Delete /> <span className="pl-2">Remove</span>
+                  </button>
                 </div>
               </div>
               <div className="hidden md:flex unit-price col-span-2 md:justify-center text-center">
@@ -150,16 +173,17 @@ const Page = () => {
           </div>
         ))}
       </div>
-      <div className="flex flex-col-reverse md:flex-row justify-between pt-6">
-        <div className="mt-8 md:mt-0">
-          <Link href="/">
-            <button className=" bg-gray_bg rounded-[50px] py-3 px-4">
-              Continue Shopping
-            </button>
-          </Link>
+      <div className="flex flex-col md:flex-row justify-between md:pt-6">
+        <div className="mb-8 mt-2 md:mt-0">
+          <button
+            onClick={() => clearCart()}
+            className=" bg-gray_bg rounded-[50px] py-3 px-4"
+          >
+            Clear Cart
+          </button>
         </div>
         <div>
-          <div className=" flex justify-between pb-12 text-lg">
+          <div className=" flex justify-between max-w-64  md:w-full md:max-w-full pb-12 text-lg">
             <span className=" font-semibold">Total</span>
             <span>₦{numberToPrice(totalPrice)}</span>
           </div>
