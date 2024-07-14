@@ -12,12 +12,12 @@ const TopSeller = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await fetch("/api/products");
+        const response = await fetch("/api/products?page=1&count=3");
         if (!response.ok) {
           throw new Error("Failed to fetch");
         }
         const data = await response.json();
-        setProducts(data);
+        setProducts(data.products);
       } catch (error) {
         console.error("Error fetching data:", error);
         setMessage("Failed to fetch data");
