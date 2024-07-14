@@ -12,7 +12,7 @@ const TopSeller = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await fetch("/api/products?page=1&count=3");
+        const response = await fetch("/api/products/random?count=3");
         if (!response.ok) {
           throw new Error("Failed to fetch");
         }

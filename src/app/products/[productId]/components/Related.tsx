@@ -27,12 +27,12 @@ const Related = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await fetch("/api/products");
+        const response = await fetch("/api/products/random?count=4");
         if (!response.ok) {
           throw new Error("Failed to fetch");
         }
         const data = await response.json();
-        setProducts(data);
+        setProducts(data.products);
       } catch (error) {
         setError("Failed to fetch product");
       }
