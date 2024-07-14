@@ -5,6 +5,7 @@ export default interface Product {
   title: string;
   price: string;
   brand?: string;
+  availability: boolean;
 }
 
 export interface Products {

@@ -1,6 +1,4 @@
 import { transformProduct } from "@/utils/transformApiResponse";
-import products from "../../components/productdb.json";
-import type Product from "@/utils/types/Product";
 
 interface ProductIdProps {
   params: { productId: string };
@@ -19,10 +17,8 @@ export async function GET(request: Request, { params }: ProductIdProps) {
       cache: "no-store",
     });
     const data = await res.json();
-    console.log("🚀 ~ GET ~ data:", data);
     const transformedResponse = transformProduct(data);
     const product = transformedResponse;
-    console.log("🚀 ~ GET ~ product:", product);
 
     if (!product) {
       throw new Error("Products not found");

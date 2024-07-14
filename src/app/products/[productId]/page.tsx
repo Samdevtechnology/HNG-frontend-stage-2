@@ -108,10 +108,14 @@ const Page = ({ params }: ProductIdPros) => {
             </div>
             <div className="border-b border-light_border font-medium mb-6 pb-2">
               <p className="mb-4">
-                Brand Name:<span className="font-normal pl-8">Stride & Co</span>
+                Brand Name:
+                <span className="font-normal pl-8">{product.brand}</span>
               </p>
               <p>
-                Availability:<span className="font-normal pl-8">In stock</span>
+                Availability:
+                <span className="font-normal pl-8">
+                  {product.availability ? "In stock" : "Sold Out"}
+                </span>
               </p>
             </div>
             <div className="border-b border-light_border font-medium mb-6 pb-2">

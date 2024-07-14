@@ -77,10 +77,7 @@ const Page = () => {
                 <div className="flex flex-col justify-center">
                   <h4 className="font-semibold text-xl">{item.title}</h4>
                   <div>
-                    <p className="pb-2">
-                      {/* {item.brand} */}
-                      Brand Name: Stride & Co
-                    </p>
+                    <p className="pb-2">Brand Name: {item.brand}</p>
                     <p className="pb-2">Product Type: {item.category}</p>
                   </div>
                   <button

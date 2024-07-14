@@ -6,8 +6,10 @@ export default function transformProducts(apiResponse: any): Products {
     id: item.id,
     image:
       item.photos.length > 0 ? `${API_IMAGE_URL}${item.photos[0].url}` : "",
-    category: item.categories.length > 0 ? item.categories[0] : "Uncategorized",
+    // category: item.categories.length > 0 ? item.categories[0] : "Uncategorized",
+    category: item.description ? item.description : "Uncategorized",
     brand: "Stride & Co",
+    availability: item.is_available,
     title: item.name,
     price: item.current_price[0]?.NGN[0]?.toFixed(2) || "0.00", // Assuming price is in NGN
   }));
@@ -23,7 +25,8 @@ export default function transformProducts(apiResponse: any): Products {
 }
 
 export const transformProduct = (apiResponse: any): Product => {
-  const { id, name, current_price, photos, extra_infos } = apiResponse;
+  const { id, name, current_price, photos, extra_infos, is_available } =
+    apiResponse;
 
   const image = photos.length > 0 ? `${API_IMAGE_URL}${photos[0].url}` : "";
   const category =
@@ -39,5 +42,6 @@ export const transformProduct = (apiResponse: any): Product => {
     title: name,
     price: current_price.toString(),
     brand,
+    availability: is_available,
   };
 };

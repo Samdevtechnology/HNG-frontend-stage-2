@@ -32,14 +32,15 @@ const Pagination = ({
   };
 
   return (
-    <div>
+    <div className="mt-6 md:mt-8">
       <ul className="flex justify-center gap-4">
         <li className="w-8 h-8 flex justify-center items-center border border-light_border rounded">
           <button
             disabled={!previousPage}
             onClick={() => handlePageChange(page - 1)}
+            className="w-full h-full flex justify-center items-center"
           >
-            <RightArrow />
+            <RightArrow active={Boolean(previousPage)} />
           </button>
         </li>
         {Array.from({ length: endPage - startPage + 1 }, (_, index) => {
@@ -51,7 +52,10 @@ const Pagination = ({
                 page === pageIndex ? currentPageClass : ""
               }`}
             >
-              <button onClick={() => handlePageChange(pageIndex)}>
+              <button
+                onClick={() => handlePageChange(pageIndex)}
+                className="w-full h-full"
+              >
                 {pageIndex}
               </button>
             </li>
@@ -61,8 +65,9 @@ const Pagination = ({
           <button
             disabled={!nextPage}
             onClick={() => handlePageChange(page + 1)}
+            className="w-full h-full flex justify-center items-center"
           >
-            <LeftArrow />
+            <LeftArrow active={Boolean(nextPage)} />
           </button>
         </li>
       </ul>
